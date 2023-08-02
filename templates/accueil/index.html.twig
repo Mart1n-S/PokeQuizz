@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="sectionAccueil">
+		<div class="containerLogo">
+			<div class="logo">
+				<img src="{{ asset('/build/logoPokeQuizz.3e6e2124.png') }}" alt="logo pokéquizz">
+			</div>
+		</div>
+		<div class="card">
+			<div class="containerFormulaire">
+				<h1>Informations</h1>
+				<p>PokéQuizz est un jeu de connaissances sur les pokémons.<br>
+					Vous avez 3 vies et marquez 1 point par bonne réponse.<br>
+					L'objectif est de figurer parmi les 20 meilleurs joueurs du classement.<br>
+					Répondez correctement pour obtenir un score élevé et montez dans le classement !</p>
+				<form action="" class="formulairePseudo" method="post">
+
+					<label for="pseudo">Pseudo</label>
+					{% if erreur is defined %}
+						<p class="erreur">{{ erreur }}</p>
+					{% endif %}
+					<input type="text" id="pseudo" name="pseudo" maxlength="11" placeholder="Entrez votre pseudo..." required>
+					<button type="submit">Start</button>
+				</form>
+			</div>
+			<div class="containerClassement">
+				<h2>Classement</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Position</th>
+							<th>Pseudo</th>
+							<th>Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for joueur in classement %}
+							<tr>
+								<td class="position">{{ loop.index }}</td>
+								<td>{{ joueur.pseudo }}</td>
+								<td>{{ joueur.score }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block footer %}
+	<footer>
+		<p>Created by Martin</p>
+		<a href="https://github.com/Mart1n-S" target="_blank">
+			<img src="{{ asset('/build/iconGitHub.7acde232.png') }}" alt="GitHub">
+		</a>
+	</footer>
+{% endblock %}
