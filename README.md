@@ -53,6 +53,13 @@ symfony server:start --no-tls
 ```
 
 <br>
+<h3 align="center">Lancer les migrations 🚀</h3>
+
+```
+symfony console d:m:m
+```
+
+<br>
 <h3 align="center">Lancer des tests 🧪</h3>
 
 ```
