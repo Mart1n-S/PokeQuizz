@@ -9,6 +9,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
+    .copyFiles({
+        from: './assets/images'
+    })
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
@@ -68,6 +71,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();
