@@ -71,3 +71,10 @@ symfony console d:m:m
 ```
 php bin/phpunit --testdox
 ```
+
+<br>
+<h3 align="center">Mettre en place les fixtures en mode dev 📋</h3>
+
+```
+php bin/console doctrine:fixtures:load
+```
