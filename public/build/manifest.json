@@ -2,9 +2,20 @@
   "build/app.css": "/build/app.6cf33c99.css",
   "build/app.js": "/build/app.4fe7be59.js",
   "build/runtime.js": "/build/runtime.ad8a04c6.js",
+  "build/images/404.png": "/build/images/404.png",
+  "build/images/500.png": "/build/images/500.png",
+  "build/images/403.png": "/build/images/403.png",
+  "build/images/503.png": "/build/images/503.png",
+  "build/images/400.png": "/build/images/400.png",
+  "build/images/401.png": "/build/images/401.png",
   "build/fonts/flexo-regular-webfont.woff": "/build/fonts/flexo-regular-webfont.13f7bb30.woff",
   "build/fonts/flexo-regular-webfont.woff2": "/build/fonts/flexo-regular-webfont.1c5ea4af.woff2",
-  "build/logoPokeQuizz.png": "/build/logoPokeQuizz.3e6e2124.png",
-  "build/iconGitHub.png": "/build/iconGitHub.7acde232.png",
-  "build/icon.png": "/build/icon.99a3c5a7.png"
+  "build/images/logoPokeQuizz.png": "/build/images/logoPokeQuizz.png",
+  "build/images/viePerdueJoueur.png": "/build/images/viePerdueJoueur.png",
+  "build/images/pokeballOpen.png": "/build/images/pokeballOpen.png",
+  "build/images/vieJoueur.png": "/build/images/vieJoueur.png",
+  "build/images/pokeball.png": "/build/images/pokeball.png",
+  "build/images/iconGitHub.png": "/build/images/iconGitHub.png",
+  "build/music/soundEffect.mp3": "/build/music/soundEffect.mp3",
+  "build/images/icon.png": "/build/images/icon.png"
 }

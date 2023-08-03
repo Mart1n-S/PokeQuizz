@@ -19,6 +19,8 @@ Symfony 6.3.2
 Docker
 
 Docker-compose
+
+nodejs et npm ou yarn
 ```
 
 <br>
@@ -47,6 +49,10 @@ docker-compose --version
 <h3 align="center">Lancer l'environnement de développement 🚀</h3>
 
 ```
+npm install
+
+npm run build
+
 docker-compose up -d
 
 symfony server:start --no-tls

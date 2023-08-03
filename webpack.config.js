@@ -10,7 +10,12 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     .copyFiles({
-        from: './assets/images'
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+    .copyFiles({
+        from: './assets/music',
+        to: 'music/[path][name].[ext]', // Optional: You can customize the destination path for music
     })
     // public path used by the web server to access the output path
     .setPublicPath('/build')
