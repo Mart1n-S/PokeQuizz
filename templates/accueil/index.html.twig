@@ -4,7 +4,7 @@
 	<section class="sectionAccueil">
 		<div class="containerLogo">
 			<div class="logo">
-				<img src="{{ asset('/build/logoPokeQuizz.3e6e2124.png') }}" alt="logo pokéquizz">
+				<img src="{{ asset('/build/images/logoPokeQuizz.png') }}" alt="logo pokéquizz">
 			</div>
 		</div>
 		<div class="card">
@@ -14,7 +14,7 @@
 					Vous avez 3 vies et marquez 1 point par bonne réponse.<br>
 					L'objectif est de figurer parmi les 20 meilleurs joueurs du classement.<br>
 					Répondez correctement pour obtenir un score élevé et montez dans le classement !</p>
-				<form action="" class="formulairePseudo" method="post">
+				<form action="{# {{ path('jeu') }}#}" class="formulairePseudo" method="post">
 
 					<label for="pseudo">Pseudo</label>
 					{% if erreur is defined %}
@@ -52,7 +52,7 @@
 	<footer>
 		<p>Created by Martin</p>
 		<a href="https://github.com/Mart1n-S" target="_blank">
-			<img src="{{ asset('/build/iconGitHub.7acde232.png') }}" alt="GitHub">
+			<img src="{{ asset('/build/images/iconGitHub.png') }}" alt="GitHub">
 		</a>
 	</footer>
 {% endblock %}
