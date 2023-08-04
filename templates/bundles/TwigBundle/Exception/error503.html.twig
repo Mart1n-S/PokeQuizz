@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur 503 - Service indisponible
+{% endblock %}
+{% block body %}
+	<section class="sectionERREUR">
+		<div class="containerERREUR">
+			<h1>ERREUR</h1>
+			<img src="{{ asset('/build/images/503.png') }}" alt="image erreur">
+			<p>Le service est temporairement indisponible.</p>
+
+			<a href="{{ path('accueil') }}">Page d'accueil</a>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur 403 - Accès refusé
+{% endblock %}
+{% block body %}
+	<section class="sectionERREUR">
+		<div class="containerERREUR">
+			<h1>ERREUR</h1>
+			<img src="{{ asset('/build/images/403.png') }}" alt="image erreur">
+			<p>Vous n'êtes pas autorisé à accéder à cette page.</p>
+
+			<a href="{{ path('accueil') }}">Page d'accueil</a>
+		</div>
+	</section>
+{% endblock %}
