@@ -3,6 +3,11 @@
 <p align="center">
 Découvrez l'univers Pokémon avec Pokéquizz ! Testez vos connaissances, devinez le nom du Pokémon affiché et grimpez dans le top 20.</p><br>
 
+<h2 align="center"> 🧪 Tente ta chance</h2>
+
+> 👉 [PokéQuizz](https://pokequizz.online/) 
+
+<br>
 <h2 align="center">Environnement de développement 📚</h2>
 <br>
 <h3 align="center">Prérequis 🧱</h3>
