@@ -14,8 +14,7 @@
 					Vous avez 3 vies et marquez 1 point par bonne réponse.<br>
 					L'objectif est de figurer parmi les 20 meilleurs joueurs du classement.<br>
 					Répondez correctement pour obtenir un score élevé et montez dans le classement !</p>
-				<form action="{# {{ path('jeu') }}#}" class="formulairePseudo" method="post">
-
+				<form action="{{ path('jeu') }}" class="formulairePseudo" method="post">
 					<label for="pseudo">Pseudo</label>
 					{% if erreur is defined %}
 						<p class="erreur">{{ erreur }}</p>

@@ -1,0 +1,20 @@
+<h1 class="finJeu">GAME OVER</h1>
+<div class="containerRetourAccueil">
+
+	<div class="element" id="imageContainer">
+		<img src="{{ asset('/build/images/pokeball.png') }}" alt="pokeball" id="image"/>
+	</div>
+	<div class="infos" id="infos">
+		<form action="{{ path('save_data') }}" id="formEndGame" class="formEndGame" method="post">
+			<img id="pokemonImageFinal" class="pokemonImageFinal" src="{{c_js_image ?? c_image}}"/>
+			<p id="reponseName">Réponse :
+				{{c_js_reponseName ?? c_nameReponse}}
+			</p>
+			<p id="scoreFinal">Score :
+				{{c_js_scoreFinal ?? score}}
+			</p>
+			<button id="button">Retour</button>
+		</form>
+	</div>
+</div>
+<script src="{{ asset('/build/js/loose.js') }}"></script>

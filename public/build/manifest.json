@@ -17,5 +17,7 @@
   "build/images/pokeball.png": "/build/images/pokeball.png",
   "build/images/iconGitHub.png": "/build/images/iconGitHub.png",
   "build/music/soundEffect.mp3": "/build/music/soundEffect.mp3",
-  "build/images/icon.png": "/build/images/icon.png"
+  "build/js/main.js": "/build/js/main.js",
+  "build/images/icon.png": "/build/images/icon.png",
+  "build/js/loose.js": "/build/js/loose.js"
 }
