@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="{{ className ?? 'sectionJeu' }}" id="sectionJeu">
+		{% if state == 'win' %}
+			<div class="containerLogo" id="containerLogo">
+				<div class="logo">
+					<img src="{{ asset('/build/images/logoPokeQuizz.png') }}" alt="logo pokéquizz"></div>
+			</div>
+		{% endif %}
+		{% if nombreVies > 0 and state != 'loose' %}
+			<div class="containerJeu" id="containerJeu">
+				<h1>Nombre de vies</h1>
+				<div class="containerVie">
+
+					<div class="vie">
+						{% for i in 1..3 %}
+							{% if i <= nombreVies %}
+								<img id="vie{{ i }}" src="{{ asset('/build/images/vieJoueur.png') }}" alt="vie {{ i }} du joueur">
+							{% else %}
+								<img id="looseVie" src="{{ asset('/build/images/viePerdueJoueur.png') }}" alt="vie {{ i }} perdue du joueur">
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				<div class="jeu">
+					{% if nombreVies > 0 %}
+						<audio id="heartSound">
+							<source src="{{ asset('/build/music/soundEffect.mp3') }}" type="audio/mpeg">
+						</audio>
+
+						<p>Score :
+							<span id="scoreJoueur">{{ score }}</span>
+						</p>
+						<img id="pokemonImage" class="pokemonImage" src="{{ data.image ?? c_image}}"/>
+
+						<form id="formReponse" class="formReponse" data-url="{{ path('verification_reponse') }}">
+							<label for="reponse">Entrer votre réponse</label>
+							<input type="text" id="reponse" class="reponseName" name="reponse" required>
+							<button type="submit">Valider</button>
+						</form>
+					</div>
+				{% endif %}
+			</div>
+
+		{% else %}
+			<div class="containerLoose">
+				{% if nombreVies <= 0 %}
+					{% include 'gameOver/loose.html.twig' %}
+				{% else %}
+					{% include 'gameWin/win.html.twig' %}
+				{% endif %}
+			</div>
+		{% endif %}
+	</section>
+
+
+{% endblock %}
+{% block footer %}
+	{% if  state != 'loose' %}
+		<footer id="footer">
+			<p>Created by Martin</p>
+			<a href="https://github.com/Mart1n-S" target="_blank">
+				<img src="{{ asset('/build/images/iconGitHub.png') }}" alt="GitHub">
+			</a>
+		</footer>
+	{% endif %}
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('/build/js/main.js') }}" async></script>
+{% endblock %}
