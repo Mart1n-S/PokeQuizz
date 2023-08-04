@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur 400 - Requête incorrecte
+{% endblock %}
+{% block body %}
+	<section class="sectionERREUR">
+		<div class="containerERREUR">
+			<h1>ERREUR</h1>
+			<img src="{{ asset('/build/images/400.png') }}" alt="image erreur">
+			<p>La requête vers le serveur est incorrecte.</p>
+
+			<a href="{{ path('accueil') }}">Page d'accueil</a>
+		</div>
+	</section>
+{% endblock %}
