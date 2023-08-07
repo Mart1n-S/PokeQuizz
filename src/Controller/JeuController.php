@@ -75,6 +75,7 @@ class JeuController extends AbstractController
 
         $resultat = ($reponseUtilisateur == $nomPokemon);
         $looseContent = null;
+        $reponsePokemon = null;
         $score = $this->requestStack->getSession()->get('score');
 
         if ($resultat) {
@@ -83,6 +84,7 @@ class JeuController extends AbstractController
         } else {
             $nombreVie = $this->requestStack->getSession()->get('vie') - 1;
             $this->requestStack->getSession()->set('vie', $nombreVie);
+            $reponsePokemon = $this->requestStack->getSession()->get('nom_pokemon');
         }
 
         $nombreVie = $this->requestStack->getSession()->get('vie');
@@ -117,6 +119,7 @@ class JeuController extends AbstractController
             'nombreVie' => $nombreVie,
             'score' => $score,
             'loose' =>  $looseContent,
+            'reponsePokemon' => $reponsePokemon,
         ]);
     }
 
