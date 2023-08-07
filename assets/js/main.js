@@ -19,6 +19,7 @@ function playHeartSound() {
 function afficherNouveauPokemon(imageSrc, nouveauScore) {
     elements.pokemonImage.src = imageSrc;
     elements.scoreJoueur.textContent = nouveauScore;
+    elements.formReponse.querySelector('button[type="submit"]').disabled = false;
 }
 
 function afficherViePerdueEtNouveauPokemon(data) {
@@ -29,6 +30,44 @@ function afficherViePerdueEtNouveauPokemon(data) {
     dernierVie.src = IMG_VIE_PERDUE_JOUEUR;
     playHeartSound();
     dernierVie.id = "looseVie";
+    elements.formReponse.querySelector('button[type="submit"]').disabled = false;
+}
+
+function changerStylesEtValeurs(data) {
+    const bouton = document.getElementById('boutonForm');
+    const label = document.querySelector('label[for="reponse"]');
+    const reponseUtilisateur = document.getElementById('reponse');
+
+    bouton.style.display = 'none';
+    label.textContent = 'Réponse';
+    label.style.fontSize = '1.3rem';
+    label.style.fontWeight = 'bold';
+    reponseUtilisateur.value = data.reponsePokemon;
+    reponseUtilisateur.disabled = true;
+    reponseUtilisateur.style.backgroundColor = '#DC6661';
+    reponseUtilisateur.style.color = 'white';
+    reponseUtilisateur.style.fontWeight = 'bold';
+}
+
+function reinitialiserStylesEtValeurs() {
+    const bouton = document.getElementById('boutonForm');
+    const label = document.querySelector('label[for="reponse"]');
+    const reponseUtilisateur = document.getElementById('reponse');
+
+    // Réinitialiser les styles du bouton et de la zone de saisie
+    bouton.style.display = 'inline-block';
+    reponseUtilisateur.style.backgroundColor = 'white';
+    reponseUtilisateur.style.color = 'black';
+    reponseUtilisateur.style.fontWeight = 'normal';
+
+    // Réinitialiser les styles du label
+    label.textContent = 'Entrer votre réponse';
+    label.style.fontSize = 'inherit';
+    label.style.fontWeight = 'normal';
+
+    // Réinitialiser la zone de saisie
+    reponseUtilisateur.value = '';
+    reponseUtilisateur.disabled = false;
 }
 
 function afficherEcranLoose(data) {
@@ -88,8 +127,12 @@ elements.formReponse.addEventListener('submit', event => {
                     reponseUtilisateur.value = '';
                 } else {
                     if (data.nombreVie > 0) {
-                        afficherViePerdueEtNouveauPokemon(data);
-                        reponseUtilisateur.value = '';
+                        changerStylesEtValeurs(data);
+
+                        setTimeout(() => {
+                            reinitialiserStylesEtValeurs();
+                            afficherViePerdueEtNouveauPokemon(data);
+                        }, 3000);
                     } else {
                         elements.footer.remove();
                         afficherViePerdueEtNouveauPokemon(data);
@@ -99,8 +142,6 @@ elements.formReponse.addEventListener('submit', event => {
                     }
                 }
             }
-            // Réactiver le bouton après que la requête a été traitée
-            elements.formReponse.querySelector('button[type="submit"]').disabled = false;
         });
 });
 
