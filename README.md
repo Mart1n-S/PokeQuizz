@@ -1,85 +1,143 @@
-<h1 align="center">PokéQuizz</h1><br>
+<h1 align="center">PokéQuizz</h1>
 
 <p align="center">
-Découvrez l'univers Pokémon avec Pokéquizz ! Testez vos connaissances, devinez le nom du Pokémon affiché et grimpez dans le top 20.</p><br>
+  Découvrez l'univers Pokémon avec <strong>PokéQuizz</strong> ! Testez vos connaissances, devinez le nom du Pokémon affiché et grimpez dans le Top 20 du classement.
+</p>
 
-<h2 align="center"> 🧪 Tente ta chance</h2>
+---
 
-> 👉 [PokéQuizz](https://pokequizz.online/) 
+## Sommaire
 
-<br>
-<h2 align="center">Environnement de développement 📚</h2>
-<br>
-<h3 align="center">Prérequis 🧱</h3>
+- [Sommaire](#sommaire)
+- [Présentation](#présentation)
+- [Fonctionnement du jeu](#fonctionnement-du-jeu)
+- [Stack technique](#stack-technique)
+- [Prérequis](#prérequis)
+- [Installation](#installation)
+- [Base de données](#base-de-données)
+- [Lancer le projet](#lancer-le-projet)
+- [Tests](#tests)
+
+---
+
+## Présentation
+
+PokéQuizz est un jeu web de culture Pokémon. Le joueur choisit un pseudo, puis doit
+deviner le nom des Pokémon affichés à l'écran. Les meilleurs scores sont enregistrés
+dans un classement et seuls les **20 meilleurs joueurs** y figurent.
+
+Les images des Pokémon sont récupérées dynamiquement via la
+[PokéAPI](https://pokeapi.co/), puis mises en cache pour limiter les appels réseau.
+
+## Fonctionnement du jeu
+
+- 🎯 Un jeu de connaissances sur les Pokémon.
+- ❤️ Le joueur dispose de **3 vies** ; chaque mauvaise réponse en retire une.
+- ➕ **+1 point** par bonne réponse.
+- 🏆 L'objectif est d'intégrer le **Top 20** du classement.
+- 💾 À la fin d'une partie, le score est enregistré et le classement mis à jour.
+
+## Stack technique
+
+| Domaine         | Technologies                          |
+| --------------- | ------------------------------------- |
+| Back-end        | PHP 8.2, Symfony 6.3                  |
+| Front-end       | Twig, JavaScript, CSS, Webpack Encore |
+| Base de données | MySQL (Doctrine ORM + migrations)     |
+| API externe     | [PokéAPI](https://pokeapi.co/)        |
+| Outils          | Docker / Docker Compose, phpMyAdmin   |
+| Tests           | PHPUnit                               |
+
+## Prérequis
 
 ```
 PHP 8.2.8
-
 Composer 2.5.8
-
 Symfony CLI 5.5.7
-
 Symfony 6.3.2
-
-Docker
-
-Docker-compose
-
-nodejs et npm ou yarn
+Node.js et npm (ou yarn)
+Docker et Docker Compose
 ```
 
-<br>
-<p align="center"><img src=".github\assets\symfony.png" alt="logo symfony"></p>
+<p align="center"><img src=".github/assets/symfony.png" alt="logo Symfony"></p>
 
-> Pour tout installer, suivez le guide en cliquant [ICI](https://symfony.com/doc/current/setup.html) <br>
-> Une fois cela fait, vérifiez les prérequis (sauf Docker et Docker-compose) en utilisant la commande suivante (de la CLI Symfony) 👇 : <br>
+> Pour installer Symfony, suivez le [guide officiel](https://symfony.com/doc/current/setup.html).
+> Vérifiez ensuite vos prérequis (hors Docker) avec :
 
-```
+```bash
 symfony check:requirements
 ```
 
-<br>
-<p align="center"><img src=".github\assets\docker.png" alt="logo docker"></p>
+<p align="center"><img src=".github/assets/docker.png" alt="logo Docker"></p>
 
-> Pour installer Docker et Docker-compose, cliquez [ICI](https://www.docker.com/products/docker-desktop/) <br>
-> Une fois cela fait, vérifiez la version de Docker et Docker-compose avec les commandes 👇 : <br>
+> Pour installer Docker et Docker Compose, rendez-vous sur le
+> [site officiel](https://www.docker.com/products/docker-desktop/). Vérifiez ensuite
+> les versions installées :
 
-```
+```bash
 docker --version
-
 docker-compose --version
 ```
 
-<br>
-<h3 align="center">Lancer l'environnement de développement 🚀</h3>
+## Installation
+
+Clonez le dépôt puis installez les dépendances PHP et front-end :
+
+```bash
+git clone https://github.com/Mart1n-S/PokeQuizz.git
+cd PokeQuizz
+
+composer install
+npm install
+npm run build
+```
+
+## Base de données
+
+La configuration de connexion se trouve dans le fichier `.env` :
 
 ```
-npm install
+DATABASE_URL="mysql://root:password@127.0.0.1:3306/pokequizz?serverVersion=8.0.34&charset=utf8mb4"
+```
 
-npm run build
+Démarrez le conteneur MySQL (et phpMyAdmin, accessible sur
+[http://localhost:8080](http://localhost:8080)) :
 
+```bash
 docker-compose up -d
+```
 
+Appliquez ensuite les migrations :
+
+```bash
+symfony console doctrine:migrations:migrate
+```
+
+(Optionnel) Chargez les fixtures pour disposer d'un classement de démonstration en
+environnement de développement :
+
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+## Lancer le projet
+
+Démarrez le serveur de développement Symfony :
+
+```bash
 symfony server:start --no-tls
 ```
 
-<br>
-<h3 align="center">Lancer les migrations 🚀</h3>
+L'application est alors disponible sur l'adresse indiquée par la CLI (par défaut
+[http://localhost:8000](http://localhost:8000)).
 
-```
-symfony console d:m:m
-```
+> 💡 Pendant le développement front-end, lancez `npm run watch` pour recompiler
+> automatiquement les assets à chaque modification.
 
-<br>
-<h3 align="center">Lancer des tests 🧪</h3>
+## Tests
 
-```
+Exécutez la suite de tests PHPUnit :
+
+```bash
 php bin/phpunit --testdox
-```
-
-<br>
-<h3 align="center">Mettre en place les fixtures en mode dev 📋</h3>
-
-```
-php bin/console doctrine:fixtures:load
 ```
