@@ -26,18 +26,37 @@ class CallPokeApi
         // Utilisation du cache pour récupérer les données si elles sont déjà en cache
         $listePokemon = $this->cache->get('liste_pokemon', function (ItemInterface $item) {
             $item->expiresAfter(86400);
-            // Si les données ne sont pas en cache, on effectue le call API et on met en cache les résultats 
-            $response = $this->httpClient->request(
-                'GET',
-                'https://pokebuildapi.fr/api/v1/pokemon'
-            );
-            $data = $response->toArray();
+
+            // Génération 1 = espèces 1 à 151. PokéAPI v2 ne renvoie pas les noms
+            // en français dans un seul appel : on interroge chaque espèce.
+            // Les requêtes HttpClient étant asynchrones, on les lance toutes
+            // puis on lit les réponses (exécution concurrente) pour réduire le
+            // temps du premier chargement (résultat ensuite mis en cache).
+            $responses = [];
+            for ($id = 1; $id <= 151; $id++) {
+                $responses[$id] = $this->httpClient->request(
+                    'GET',
+                    'https://pokeapi.co/api/v2/pokemon-species/' . $id
+                );
+            }
 
             $liste = [];
 
-            foreach ($data as $pokemon) {
-                $namePokemon = $pokemon['name'];
-                $imagePokemon = $pokemon['image'];
+            foreach ($responses as $id => $response) {
+                $data = $response->toArray();
+
+                // Nom en français, avec repli sur le nom par défaut (anglais)
+                $namePokemon = $data['name'];
+                foreach ($data['names'] as $name) {
+                    if ($name['language']['name'] === 'fr') {
+                        $namePokemon = $name['name'];
+                        break;
+                    }
+                }
+
+                // L'image n'est pas dans la réponse "species" : on reconstruit
+                // l'URL de l'artwork officiel à partir de l'id.
+                $imagePokemon = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $id . '.png';
 
                 $liste[] = [
                     'name' => $namePokemon,
